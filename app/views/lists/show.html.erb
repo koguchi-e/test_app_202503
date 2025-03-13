@@ -1,5 +1,22 @@
-<h2>タイトル</h2>
-<p><%= @list.title %></p>
+<p>
+    <b>タイトル</b>：
+    <%= @list.title %>
+</p>
 
-<h2>本文</h2>
-<p><%= @list.body %></p>
+<p>
+    <b>画像</b>：
+    <% if @list.image.attached? %>
+        <%= image_tag @list.image, size: "30x30" %>
+    <% else %>
+        <%= image_tag 'no_image', size: "30x30" %>
+    <% end %>
+</p>
+
+<p>
+    <b>本文</b>：
+    <%= @list.body %>
+</p>
+
+<%= link_to "編集", edit_list_path(@list.id) %>
+<%#= link_to "削除", destroy_list_path(@list.id), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+<%= link_to "削除", list_path(@list.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
